@@ -1,0 +1,53 @@
+{
+    "dependencies": [
+        {
+            "interfaces": "ride\\library\\media\\MediaFactory",
+            "class": "ride\\application\\media\\DependencyMediaFactory",
+            "id": "dependency"
+        },
+        {
+            "interfaces": "ride\\library\\media\\item\\MediaItem",
+            "class": "ride\\library\\media\\item\\SoundcloudMediaItem",
+            "id": "soundcloud",
+            "calls": [
+                {
+                    "method": "setClientId",
+                    "arguments": [
+                        {
+                            "name": "clientId",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "soundcloud.client.id"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "interfaces": "ride\\library\\media\\item\\MediaItem",
+            "class": "ride\\library\\media\\item\\VimeoMediaItem",
+            "id": "vimeo"
+        },
+        {
+            "interfaces": "ride\\library\\media\\item\\MediaItem",
+            "class": "ride\\library\\media\\item\\YoutubeMediaItem",
+            "id": "youtube"
+        },
+        {
+            "interfaces": "ride\\library\\validation\\validator\\Validator",
+            "class": "ride\\application\\media\\validator\\AudioValidator",
+            "id": "audio"
+        },
+        {
+            "interfaces": "ride\\library\\validation\\validator\\Validator",
+            "class": "ride\\application\\media\\validator\\MediaValidator",
+            "id": "media"
+        },
+        {
+            "interfaces": "ride\\library\\validation\\validator\\Validator",
+            "class": "ride\\application\\media\\validator\\VideoValidator",
+            "id": "video"
+        }
+    ]
+}
