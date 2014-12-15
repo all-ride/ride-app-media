@@ -28,6 +28,14 @@ class DependencyMediaFactory implements MediaFactory {
     }
 
     /**
+     * Gets the HTTP client used by the media library
+     * @return \ride\library\http\client\Client
+     */
+    public function getHttpClient() {
+        return $this->dependencyInjector->get('ride\\library\\http\\client\\Client');
+    }
+
+    /**
      * Creates a media item from a URL
      * @param string $url URL to a item of a media service
      * @return \ride\library\media\item\MediaItem Instance of the media item
