@@ -41,7 +41,7 @@
                             "name": "clientId",
                             "type": "parameter",
                             "properties": {
-                                "key": "google.youtube.id"
+                                "key": "google.api.key"
                             }
                         }
                                             ]
