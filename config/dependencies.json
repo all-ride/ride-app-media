@@ -32,7 +32,21 @@
         {
             "interfaces": "ride\\library\\media\\item\\MediaItem",
             "class": "ride\\library\\media\\item\\YoutubeMediaItem",
-            "id": "youtube"
+            "id": "youtube",
+            "calls": [
+                {
+                    "method": "setClientId",
+                    "arguments": [
+                        {
+                            "name": "clientId",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "google.api.key"
+                            }
+                        }
+                                            ]
+                }
+            ]
         },
         {
             "interfaces": "ride\\library\\validation\\validator\\Validator",
