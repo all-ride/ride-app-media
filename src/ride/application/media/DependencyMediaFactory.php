@@ -4,7 +4,7 @@ namespace ride\application\media;
 
 use ride\library\dependency\DependencyInjector;
 use ride\library\http\client\Client;
-use ride\library\media\exception\MediaException;
+use ride\library\media\exception\UnsupportedMediaException;
 use ride\library\media\MediaFactory;
 
 /**
@@ -55,7 +55,7 @@ class DependencyMediaFactory implements MediaFactory {
         } elseif (stripos($url, 'soundcloud') !== false) {
             $mediaItem = $this->dependencyInjector->get('ride\\library\\media\\item\\MediaItem', 'soundcloud', $arguments, true);
         } else {
-            throw new MediaException('Could not create a media item for ' . $url . ': unsupported type or invalid URL provided');
+            throw new UnsupportedMediaException('Could not create a media item for ' . $url . ': unsupported type or invalid URL provided');
         }
 
         return $mediaItem;
