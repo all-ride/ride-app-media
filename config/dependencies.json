@@ -28,12 +28,40 @@
         {
             "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
             "class": "ride\\library\\media\\factory\\YoutubeMediaItemFactory",
-            "id": "mediaitem.factory.youtube"
+            "id": "mediaitem.factory.youtube",
+            "calls": [
+                {
+                    "method": "setClientId",
+                    "arguments": [
+                        {
+                            "name": "clientId",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "google.api.key"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
             "class": "ride\\library\\media\\factory\\SoundcloudMediaItemFactory",
-            "id": "mediaitem.factory.soundcloud"
+            "id": "mediaitem.factory.soundcloud",
+            "calls": [
+                {
+                    "method": "setClientId",
+                    "arguments": [
+                        {
+                            "name": "clientId",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "soundcloud.client.id"
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
