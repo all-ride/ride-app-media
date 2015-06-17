@@ -6,49 +6,6 @@
             "id": "dependency"
         },
         {
-            "interfaces": "ride\\library\\media\\item\\MediaItem",
-            "class": "ride\\library\\media\\item\\SoundcloudMediaItem",
-            "id": "soundcloud",
-            "calls": [
-                {
-                    "method": "setClientId",
-                    "arguments": [
-                        {
-                            "name": "clientId",
-                            "type": "parameter",
-                            "properties": {
-                                "key": "soundcloud.client.id"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "interfaces": "ride\\library\\media\\item\\MediaItem",
-            "class": "ride\\library\\media\\item\\VimeoMediaItem",
-            "id": "vimeo"
-        },
-        {
-            "interfaces": "ride\\library\\media\\item\\MediaItem",
-            "class": "ride\\library\\media\\item\\YoutubeMediaItem",
-            "id": "youtube",
-            "calls": [
-                {
-                    "method": "setClientId",
-                    "arguments": [
-                        {
-                            "name": "clientId",
-                            "type": "parameter",
-                            "properties": {
-                                "key": "google.api.key"
-                            }
-                        }
-                                            ]
-                }
-            ]
-        },
-        {
             "interfaces": "ride\\library\\validation\\validator\\Validator",
             "class": "ride\\application\\media\\validator\\AudioValidator",
             "id": "audio"
@@ -62,6 +19,21 @@
             "interfaces": "ride\\library\\validation\\validator\\Validator",
             "class": "ride\\application\\media\\validator\\VideoValidator",
             "id": "video"
+        },
+        {
+            "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
+            "class": "ride\\library\\media\\factory\\VimeoMediaItemFactory",
+            "id": "mediaitem.factory.vimeo"
+        },
+        {
+            "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
+            "class": "ride\\library\\media\\factory\\YoutubeMediaItemFactory",
+            "id": "mediaitem.factory.youtube"
+        },
+        {
+            "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
+            "class": "ride\\library\\media\\factory\\SoundcloudMediaItemFactory",
+            "id": "mediaitem.factory.soundcloud"
         }
     ]
 }
