@@ -49,6 +49,7 @@ or you could add the clientId parameter, like eg. for the YoutubeMediaItemFactor
         // ...
     ]
 }
+```
 
 ### Code sample
 
