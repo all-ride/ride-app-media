@@ -43,7 +43,7 @@ class DependencyMediaFactory implements MediaFactory {
      * @throws \ride\library\media\exception\MediaException when no media item
      * instance could be created
      */
-    public function createMediaItem($url) {
+    public function createMediaItem($url, $clientId=null) {
         $mediaItemFactories = $this->dependencyInjector->getByTag('ride\\library\\media\\factory\\MediaItemFactory');
 
         foreach($mediaItemFactories as $mediaItemFactory) {
