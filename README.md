@@ -1,12 +1,15 @@
-# ride/app-media
+# Ride: Media Implementation
 
-This is the app implementation of ``ride/lib-media``. The main interface if the ``DependencyMediaFactory`` which does the same as ``ride\library\media\SimpleMediaFactory`` except for the use of registered dependencies on media item factories. Read the readme of ``ride/lib-media`` for further reference.
+This is the implementation of ``ride/lib-media`` in the Ride application layer.
+ 
+The main interface if the ``DependencyMediaFactory`` which does the same as ``ride\library\media\SimpleMediaFactory`` except for the use of registered dependencies on media item factories. 
+Check the README of ``ride/lib-media`` for further reference.
 
-### Code reference
+## Code reference
 
 Instead of manually adding MediaItem factories in the ``createMediaItem`` method, you can add them as a dependency, these can either be simple dependencies like eg. for the VimeoMediaItemFactory:
 
-```js
+```json
 // ride/app-media/config/dependencies.json
 {
     "dependencies": [
@@ -14,7 +17,7 @@ Instead of manually adding MediaItem factories in the ``createMediaItem`` method
         {
             "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
             "class": "ride\\library\\media\\factory\\VimeoMediaItemFactory",
-            "id": "mediaitem.factory.vimeo"
+            "id": "vimeo"
         }
         // ...
     ]
@@ -22,7 +25,8 @@ Instead of manually adding MediaItem factories in the ``createMediaItem`` method
 ```
 
 or you could add the clientId parameter, like eg. for the YoutubeMediaItemFactory:
-```js
+
+```json
 // ride/app-media/config/dependencies.json
 {
     "dependencies": [
@@ -30,7 +34,7 @@ or you could add the clientId parameter, like eg. for the YoutubeMediaItemFactor
         {
             "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
             "class": "ride\\library\\media\\factory\\YoutubeMediaItemFactory",
-            "id": "mediaitem.factory.youtube",
+            "id": "youtube",
             "calls": [
                 {
                     "method": "setClientId",
@@ -51,18 +55,23 @@ or you could add the clientId parameter, like eg. for the YoutubeMediaItemFactor
 }
 ```
 
-### Code sample
+## Code sample
 
 ```php
+<?php
+
 use ride\application\media\DependencyMediaFactory;
-use ride\library\http\client\Client;
 
-$httpClient = // get http Client;
-$dependencyMediaFactory = new DependencyMediaFactory($httpClient);
+use ride\library\dependency\DependencyInjector;
 
-// create a MediaItem (eg. Vimeo)
-$vimeoMediaItem = $dependencyMediaFactory->createMediaItem('https://vimeo.com/130848841');
+function testMediaFactory(DependencyInjector $dependencyInjector) {
+    $dependencyMediaFactory = new DependencyMediaFactory($dependencyInjector);
 
-// create a MediaItem which depends on a clientId, but is injected via the DependencyInjector (eg. Youtube)
-$youtubeMediaItem = $dependencyMediaFactory->createMediaItem('https://www.youtube.com/watch?v=njos57IJf-0');
-```
+    // create a MediaItem (eg. Vimeo)
+    $vimeoMediaItem = $dependencyMediaFactory->createMediaItem('https://vimeo.com/130848841');
+
+    // create a MediaItem which depends on a clientId, but is injected via the DependencyInjector (eg. Youtube)
+    $youtubeMediaItem = $dependencyMediaFactory->createMediaItem('https://www.youtube.com/watch?v=njos57IJf-0');
+
+    // ```
+}
