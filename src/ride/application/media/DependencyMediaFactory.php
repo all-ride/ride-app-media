@@ -6,6 +6,7 @@ use ride\library\dependency\DependencyInjector;
 use ride\library\http\client\Client;
 use ride\library\media\exception\UnsupportedMediaException;
 use ride\library\media\MediaFactory;
+use ride\library\media\factory\EmbedMediaItemFactory;
 
 /**
  * Simple media factory
@@ -42,23 +43,17 @@ class DependencyMediaFactory implements MediaFactory {
      * @throws \ride\library\media\exception\MediaException when no media item
      * instance could be created
      */
-    public function createMediaItem($url) {
-        $arguments = array(
-            'id' => null,
-            'url' => $url,
-        );
+    public function createMediaItem($url, $clientId=null) {
+        $mediaItemFactories = $this->dependencyInjector->getByTag('ride\\library\\media\\factory\\MediaItemFactory');
 
-        if (stripos($url, 'youtu') !== false) {
-            $mediaItem = $this->dependencyInjector->get('ride\\library\\media\\item\\MediaItem', 'youtube', $arguments, true);
-        } elseif (stripos($url, 'vimeo') !== false) {
-            $mediaItem = $this->dependencyInjector->get('ride\\library\\media\\item\\MediaItem', 'vimeo', $arguments, true);
-        } elseif (stripos($url, 'soundcloud') !== false) {
-            $mediaItem = $this->dependencyInjector->get('ride\\library\\media\\item\\MediaItem', 'soundcloud', $arguments, true);
-        } else {
-            throw new UnsupportedMediaException('Could not create a media item for ' . $url . ': unsupported type or invalid URL provided');
+        foreach($mediaItemFactories as $mediaItemFactory) {
+            if ($mediaItemFactory->isValidUrl($url)) {
+                return $mediaItemFactory->createFromUrl($url);
+            }
         }
 
-        return $mediaItem;
+        $embedFactory = new EmbedMediaItemFactory($this->dependencyInjector);
+        return $embedFactory->createFromUrl($url);
     }
 
     /**
