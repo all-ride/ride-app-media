@@ -52,7 +52,7 @@ class DependencyMediaFactory implements MediaFactory {
             }
         }
 
-        $embedFactory = new EmbedMediaItemFactory($this->dependencyInjector);
+        $embedFactory = new EmbedMediaItemFactory($this->getHttpClient());
         return $embedFactory->createFromUrl($url);
     }
 
