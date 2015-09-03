@@ -27,6 +27,11 @@
         },
         {
             "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
+            "class": "ride\\library\\media\\factory\\ImageMediaItemFactory",
+            "id": "mediaitem.factory.image"
+        },
+        {
+            "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
             "class": "ride\\library\\media\\factory\\YoutubeMediaItemFactory",
             "id": "mediaitem.factory.youtube",
             "calls": [
