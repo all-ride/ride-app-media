@@ -5,8 +5,8 @@ namespace ride\application\media;
 use ride\library\dependency\DependencyInjector;
 use ride\library\http\client\Client;
 use ride\library\media\exception\UnsupportedMediaException;
+use ride\library\media\factory\MediaItemFactory;
 use ride\library\media\MediaFactory;
-use ride\library\media\factory\EmbedMediaItemFactory;
 
 /**
  * Simple media factory
@@ -18,6 +18,12 @@ class DependencyMediaFactory implements MediaFactory {
      * @var \ride\library\dependency\DependencyInjector
      */
     protected $dependencyInjector;
+
+    /**
+     * Default media item factory, fallback
+     * @var \ride\library\media\factory\MediaItemFactory
+     */
+    protected $defaultMediaItemFactory;
 
     /**
      * Constructs a new media factory
@@ -37,6 +43,15 @@ class DependencyMediaFactory implements MediaFactory {
     }
 
     /**
+     * Sets the default media item factory, a fallback
+     * @param \ride\library\media\factory\MediaItemFactory $defaultMediaItemFactory
+     * @return null
+     */
+    public function setDefaultMediaItemFactory(MediaItemFactory $defaultMediaItemFactory) {
+        $this->defaultMediaItemFactory = $defaultMediaItemFactory;
+    }
+
+    /**
      * Creates a media item from a URL
      * @param string $url URL to a item of a media service
      * @return \ride\library\media\item\MediaItem Instance of the media item
@@ -48,12 +63,16 @@ class DependencyMediaFactory implements MediaFactory {
 
         foreach($mediaItemFactories as $mediaItemFactory) {
             if ($mediaItemFactory->isValidUrl($url)) {
+                kd($mediaItemFactory);
                 return $mediaItemFactory->createFromUrl($url);
             }
         }
 
-        $embedFactory = new EmbedMediaItemFactory($this->getHttpClient());
-        return $embedFactory->createFromUrl($url);
+        if ($this->defaultMediaItemFactory) {
+            return $this->defaultMediaItemFactory->createFromUrl($url);
+        }
+
+        throw new UnsupportedMediaException('Could not get media item for ' . $url . ': no factory available');
     }
 
     /**

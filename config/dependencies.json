@@ -3,7 +3,21 @@
         {
             "interfaces": "ride\\library\\media\\MediaFactory",
             "class": "ride\\application\\media\\DependencyMediaFactory",
-            "id": "dependency"
+            "id": "dependency",
+            "calls": [
+                {
+                    "method": "setDefaultMediaItemFactory",
+                    "arguments": [
+                        {
+                            "name": "defaultMediaItemFactory",
+                            "type": "dependency",
+                            "properties": {
+                                "interface": "ride\\library\\media\\factory\\UrlMediaItemFactory"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "interfaces": "ride\\library\\validation\\validator\\Validator",
@@ -23,17 +37,12 @@
         {
             "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
             "class": "ride\\library\\media\\factory\\VimeoMediaItemFactory",
-            "id": "mediaitem.factory.vimeo"
-        },
-        {
-            "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
-            "class": "ride\\library\\media\\factory\\ImageMediaItemFactory",
-            "id": "mediaitem.factory.image"
+            "id": "vimeo"
         },
         {
             "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
             "class": "ride\\library\\media\\factory\\YoutubeMediaItemFactory",
-            "id": "mediaitem.factory.youtube",
+            "id": "youtube",
             "calls": [
                 {
                     "method": "setClientId",
@@ -52,7 +61,7 @@
         {
             "interfaces": "ride\\library\\media\\factory\\MediaItemFactory",
             "class": "ride\\library\\media\\factory\\SoundcloudMediaItemFactory",
-            "id": "mediaitem.factory.soundcloud",
+            "id": "soundcloud",
             "calls": [
                 {
                     "method": "setClientId",
