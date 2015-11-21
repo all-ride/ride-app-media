@@ -2,7 +2,7 @@
     "name": "ride/app-media",
     "description": "Integration of the media library for a Ride application.",
     "license": "MIT",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "authors": [
         {
             "name": "Joris Vandeweerd",
