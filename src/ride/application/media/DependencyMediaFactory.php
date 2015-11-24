@@ -4,6 +4,7 @@ namespace ride\application\media;
 
 use ride\library\dependency\DependencyInjector;
 use ride\library\http\client\Client;
+use ride\library\media\exception\MediaException;
 use ride\library\media\exception\UnsupportedMediaException;
 use ride\library\media\factory\MediaItemFactory;
 use ride\library\media\MediaFactory;
@@ -58,12 +59,11 @@ class DependencyMediaFactory implements MediaFactory {
      * @throws \ride\library\media\exception\MediaException when no media item
      * instance could be created
      */
-    public function createMediaItem($url, $clientId=null) {
+    public function createMediaItem($url) {
         $mediaItemFactories = $this->dependencyInjector->getByTag('ride\\library\\media\\factory\\MediaItemFactory');
 
         foreach($mediaItemFactories as $mediaItemFactory) {
             if ($mediaItemFactory->isValidUrl($url)) {
-                kd($mediaItemFactory);
                 return $mediaItemFactory->createFromUrl($url);
             }
         }
@@ -89,7 +89,7 @@ class DependencyMediaFactory implements MediaFactory {
         try {
             $mediaItem = $this->dependencyInjector->get('ride\\library\\media\\item\\MediaItem', $type, $arguments, true);
         } catch (DependencyException $exception) {
-            throw new VideoException('Could not get the media item', 0, $exception);
+            throw new MediaException('Could not get the media item', 0, $exception);
         }
 
         return $mediaItem;
