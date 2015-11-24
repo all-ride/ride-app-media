@@ -26,6 +26,11 @@
         },
         {
             "interfaces": "ride\\library\\validation\\validator\\Validator",
+            "class": "ride\\application\\media\\validator\\DocumentValidator",
+            "id": "document"
+        },
+        {
+            "interfaces": "ride\\library\\validation\\validator\\Validator",
             "class": "ride\\application\\media\\validator\\MediaValidator",
             "id": "media"
         },
