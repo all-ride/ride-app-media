@@ -2,7 +2,6 @@
     "name": "ride/app-media",
     "description": "Integration of the media library for a Ride application.",
     "license": "MIT",
-    "version": "0.5.0",
     "authors": [
         {
             "name": "Joris Vandeweerd",
@@ -10,10 +9,11 @@
         }
     ],
     "require": {
-        "ride/app-validation": ">=0.2.0",
-        "ride/lib-dependency": ">=0.5.0",
-        "ride/lib-media": ">=0.5.0",
-        "ride/lib-validation": ">=0.1.0"
+        "ride/app": "^1.0.0",
+        "ride/app-validation": "^1.0.0",
+        "ride/lib-dependency": "^1.0.0",
+        "ride/lib-media": "^1.0.0",
+        "ride/lib-validation": "^1.0.0"
     },
     "autoload": {
         "psr-0": {

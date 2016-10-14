@@ -5,6 +5,10 @@ This is the implementation of ``ride/lib-media`` in the Ride application layer.
 The main interface if the ``DependencyMediaFactory`` which does the same as ``ride\library\media\SimpleMediaFactory`` except for the use of registered dependencies on media item factories. 
 Check the README of ``ride/lib-media`` for further reference.
 
+## Parameters
+
+* __google.api.key__: API key for the google related api calls (Youtube, Geocode...)
+
 ## Code reference
 
 Instead of manually adding MediaItem factories in the ``createMediaItem`` method, you can add them as a dependency, these can either be simple dependencies like eg. for the VimeoMediaItemFactory:
@@ -75,3 +79,22 @@ function testMediaFactory(DependencyInjector $dependencyInjector) {
 
     // ```
 }
+```
+
+## Related Modules 
+
+- [ride/app](https://github.com/all-ride/ride-app)
+- [ride/app-orm-asset](https://github.com/all-ride/ride-app-orm-asset)
+- [ride/app-validation](https://github.com/all-ride/ride-app-validation)
+- [ride/lib-dependency](https://github.com/all-ride/ride-lib-dependency)
+- [ride/lib-media](https://github.com/all-ride/ride-lib-media)
+- [ride/lib-validation](https://github.com/all-ride/ride-lib-validation)
+
+## Installation
+
+You can use [Composer](http://getcomposer.org) to install this module.
+
+```
+composer require ride/app-media
+```
+
